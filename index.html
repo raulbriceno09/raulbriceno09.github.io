@@ -4,33 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sample HTML Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
-    <h1>Raul's webpage</h1>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Raul's Webpage</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#summarySection">Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#hobbiesSection">Hobbies</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <h2>Summary</h2>
+    <!-- Jumbotron for Title Sub-Header -->
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Raul's Webpage!</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    </div>
 
-    <p>Hey everyone my name is Raul I am a senior college student pursuing a degree in IS 
-     really excited to be part of this class.
-    </p>
+    <div class="container">
+        <!-- Summary Section -->
+        <div id="summarySection" class="collapse">
+            <h2>Summary</h2>
+            <p>Hey everyone my name is Raul. I am a senior college student pursuing a degree in IS. Really excited to be part of this class.</p>
+        </div>
 
-    <h2>List of hobbies </h2>
+        <!-- Hobbies Section -->
+        <div id="hobbiesSection" class="collapse">
+            <h2>List of Hobbies</h2>
+            <ul>
+                <li>Videogames</li>
+                <li>Working out</li>
+                <li>Anime/Manga</li>
+            </ul>
+        </div>
 
-    <ul>
-        <li>Videogames</li>
-        <li>Working out</li>
-        <li>Anime/Manga</li>
-    </ul>
+        <a href="https://www.youtube.com/watch?v=akrgSlM-eao">Important information about labradors</a>
+        <img src="labrador2.png" class="img-fluid" alt="Responsive image">
 
-    <a href="https://www.youtube.com/watch?v=akrgSlM-eao">Important information about labradors</a>
+        <hr>
 
-    <img src="labrador2.png" width="350" height="400">
+        <p>Date: February 10, 2024</p>
+        <p>Author: Raul Briceno</p>
+    </div>
 
-    <hr>
-
-    <p>Date: February 10, 2024</p>
-    <p>Author: Raul Briceno</p>
-
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
