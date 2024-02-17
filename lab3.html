@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dog Breed Facts</title>
+    <!-- Bootstrap CSS for responsive back button -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .container {
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column; /* Adjusted to stack items vertically */
         }
         img {
             max-width: 300px;
             max-height: 300px;
-            margin-right: 20px;
+            margin: 20px; /* Adjust for spacing around image */
         }
         ul {
             list-style-type: none;
@@ -21,11 +24,20 @@
         li {
             margin-bottom: 10px;
         }
+        /* Additional styling for the back button */
+        .back-button {
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Back to Home Button -->
+    <div class="back-button">
+        <button class="btn btn-primary" onclick="window.location.href='index.html';">Back to Home</button>
+    </div>
+
     <img src="labrador.jpeg" alt="Dog">
     <ul>
         <li>Labradors love the water.</li>
@@ -36,5 +48,9 @@
     </ul>
 </div>
 
+<!-- Bootstrap JS, Popper.js, and jQuery for button functionality -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
