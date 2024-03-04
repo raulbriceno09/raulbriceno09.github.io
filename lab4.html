@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordering Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+  // Step 1: Welcome Alert
+  alert("Welcome to Our Store!");
+
+  // Step 2: Collect Customer Information
+  let customerName = prompt("Please enter your name:");
+  let itemRequested = prompt("What item would you like to order?");
+  let numberOfItems = prompt("How many would you like to order? (1-99)");
+
+  numberOfItems = parseInt(numberOfItems);
+  if (numberOfItems < 1 || numberOfItems > 99 || isNaN(numberOfItems)) {
+    alert("Invalid quantity. Please reload the page and enter a quantity between 1 and 99.");
+    throw new Error("Invalid quantity entered");
+  }
+
+  // Step 3: Time-Appropriate Greeting
+  const hours = new Date().getHours();
+  let greeting;
+  if (hours < 12) {
+    greeting = "Good Morning";
+  } else if (hours < 18) {
+    greeting = "Good Afternoon";
+  } else {
+    greeting = "Good Evening";
+  }
+
+  // Display greeting
+  document.write(`<h1>${greeting} ${customerName}, Thank you for Ordering!</h1>`);
+
+  // Step 4: Display Order Information
+  // Calculate expected arrival date (7 days from now)
+  const arrivalDate = new Date();
+  arrivalDate.setDate(arrivalDate.getDate() + 7);
+
+  document.write(`
+    <p>Item Ordered: ${itemRequested}</p>
+    <p>Quantity: ${numberOfItems}</p>
+    <p>Expected Arrival Date: ${arrivalDate.toDateString()}</p>
+  `);
+</script>
+
+</body>
+</html>
