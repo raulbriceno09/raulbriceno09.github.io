@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #f8f9fa94;
+            color: #333;
+        }
+        .form-container {
+            background-color: steelblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,.05);
+            max-width: 500px;
+            margin: auto;
+            margin-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .btn-custom {
+            background-color: grey;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="text-center">Register</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="emailAddress">Email Address</label>
+                    <input type="email" class="form-control" id="emailAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="dateOfBirth">Date of Birth</label>
+                    <input type="date" class="form-control" id="dateOfBirth" required>
+                </div>
+                <button type="submit" class="btn btn-custom">Register</button>
+            </form>
+            <div id="registrationResult" class="mt-4"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Gather input values
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var emailAddress = document.getElementById('emailAddress').value;
+            var password = document.getElementById('password').value;
+            var dateOfBirth = document.getElementById('dateOfBirth').value;
+
+            // Validate input
+            var validationMessage = '';
+            if (!firstName || !lastName || !emailAddress || !password || !dateOfBirth) {
+                validationMessage = 'All fields must be filled out.';
+            } else if (!password.includes('!') && !password.includes('?')) {
+                validationMessage = 'Password must contain a special character: ! or ?';
+            }
+
+            // Display result or error
+            var resultContainer = document.getElementById('registrationResult');
+            if (validationMessage) {
+                resultContainer.innerHTML = '<p class="text-danger">' + validationMessage + '</p>';
+            } else {
+                var safePassword = '*'.repeat(password.length);
+                var successMessage = `
+                    <p class="text-success">Registration Successful!</p>
+                    <p>First Name: ${firstName}</p>
+                    <p>Last Name: ${lastName}</p>
+                    <p>Email Address: ${emailAddress}</p>
+                    <p>Password: ${safePassword}</p>
+                    <p>Date of Birth: ${dateOfBirth}</p>
+                `;
+                resultContainer.innerHTML = successMessage;
+            }
+        });
+    </script>
+</body>
+</html>
