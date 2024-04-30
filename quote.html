@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Quotes Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Soft blue background */
+            color: #333; /* Darker text for readability */
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+            padding: 20px;
+        }
+        .card {
+            background-color: #eef; /* Light purple background for the card */
+            border: none;
+            opacity: 0; /* Start with the card being transparent */
+            transition: opacity 1s ease; /* Transition for the fade-in effect */
+        }
+        .card.show {
+            opacity: 1; /* Fully visible when 'show' class is added */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Slight lift effect on hover */
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2); /* Increased shadow on hover */
+        }
+        .btn-primary {
+            background-color: #4b0082; /* Deep indigo button */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #551a8b; /* Slightly lighter indigo on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 text-center">Random Anime Quotes</h1>
+        <div id="quoteContainer" class="mt-3"></div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary" onclick="loadRandomQuote()">Get Another Quote</button>
+        </div>
+    </div>
+
+    <script>
+        function loadRandomQuote() {
+            fetch('https://animechan.xyz/api/random')
+                .then(response => response.json())
+                .then(quote => {
+                    const quoteDiv = document.getElementById('quoteContainer');
+                    quoteDiv.innerHTML = ''; // Clear the current content
+                    const newQuoteHTML = `<div class="card">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p>"${quote.quote}"</p>
+                                <footer class="blockquote-footer">${quote.character} in <cite title="Source Title">${quote.anime}</cite></footer>
+                            </blockquote>
+                        </div>
+                    </div>`;
+                    setTimeout(() => {
+                        quoteDiv.innerHTML = newQuoteHTML; // Add new quote HTML
+                        quoteDiv.firstChild.classList.add('show'); // Add class to trigger the fade-in effect
+                    }, 100); // Short delay before displaying to ensure the transition is visible
+                })
+                .catch(error => {
+                    console.error('Error fetching the quote:', error);
+                });
+        }
+
+        // Initial load of a random quote
+        loadRandomQuote();
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Character Quotes</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Soft blue background */
+            color: #333; /* Darker text for readability */
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .card {
+            background-color: #eef; /* Light purple background for the card */
+            border: none;
+            opacity: 0; /* Start with the card being transparent */
+            transition: opacity 1s ease; /* Transition for the fade-in effect */
+        }
+        .card.show {
+            opacity: 1; /* Fully visible when 'show' class is added */
+        }
+        .btn-primary {
+            background-color: #4b0082; /* Deep indigo button */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #551a8b; /* Slightly lighter indigo on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 text-center">Search Quotes by Character</h1>
+        <div class="form-group mt-3">
+            <input type="text" id="characterName" class="form-control" placeholder="Enter character name">
+            <button class="btn btn-primary mt-3" onclick="searchByCharacter()">Search</button>
+        </div>
+        <div id="quotesContainer"></div>
+    </div>
+
+    <script>
+        function searchByCharacter() {
+            const character = document.getElementById('characterName').value.trim();
+            if(character) {
+                fetch(`https://animechan.xyz/api/quotes/character?name=${character}`)
+                    .then(response => response.json())
+                    .then(quotes => {
+                        const container = document.getElementById('quotesContainer');
+                        container.innerHTML = ''; // Clear previous results
+                        quotes.forEach(quote => {
+                            const card = document.createElement('div');
+                            card.className = 'card mb-3';
+                            card.innerHTML = `<div class="card-body">
+                                <p>"${quote.quote}"</p>
+                                <footer class="blockquote-footer">${quote.anime}</footer>
+                            </div>`;
+                            container.appendChild(card);
+                            setTimeout(() => {
+                                card.classList.add('show'); // Add class to trigger fade-in effect
+                            }, 100);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching quotes:', error);
+                        document.getElementById('quotesContainer').innerHTML = '<p class="text-danger">Failed to fetch quotes. Please try again.</p>';
+                    });
+            }
+        }
+    </script>
+</body>
+</html>
